@@ -40,11 +40,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/clusterlean/clusterlean-sdk-js.git",
-    "directory": "build"
+    "directory": "lib"
   },
   "license": "MIT",
   "description": "Clusterlean App SDK for JavaScript",
-  "files": [
-    "lib"
-  ]
+  "files": ["lib"],
+  "types": "lib/index.d.ts",
+  "typings": "lib/index.d.ts",
+  "keywords": ["api", "clusterlean", "db", "memory", "sql"]
 }

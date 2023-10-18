@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm build
-      - run: npm test
-      - run: npm publish
+      - run: npm run build
+      - run: npm run test
+      - run: npm run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
