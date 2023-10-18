@@ -1,6 +1,6 @@
 {
   "name": "@clusterlean/clusterlean-sdk-js",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc --rootDir src --declaration",
@@ -44,8 +44,16 @@
   },
   "license": "MIT",
   "description": "Clusterlean App SDK for JavaScript",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "types": "lib/index.d.ts",
   "typings": "lib/index.d.ts",
-  "keywords": ["api", "clusterlean", "db", "memory", "sql"]
+  "keywords": [
+    "api",
+    "clusterlean",
+    "db",
+    "memory",
+    "sql"
+  ]
 }
