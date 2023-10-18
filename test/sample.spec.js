@@ -1,12 +1,12 @@
-const {assert} = require('chai');
+import { assert } from "chai";
 
-describe('another case', function () {
-  const expected = {hello: 'world'};
+describe("another case", function () {
+  const expected = { hello: "world" };
   let actual;
   before(function () {
-    actual = {hello: 'world'};
+    actual = { hello: "world" };
   });
-  it('returns desired response', function () {
+  it("returns desired response", function () {
     assert.deepStrictEqual(actual, expected);
   });
 });
