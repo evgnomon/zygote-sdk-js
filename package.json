@@ -1,9 +1,6 @@
 {
   "name": "@clusterlean/clusterlean-sdk-js",
   "version": "0.1.1",
-  "bin": {
-    "example-js-project": "build/src/entrypoints/server/index.js"
-  },
   "scripts": {
     "start": "node build/src/entrypoints/server",
     "build": "tsc --rootDir src --declaration && node esbuild.config.js",
@@ -61,5 +58,6 @@
     "directory": "build"
   },
   "license": "MIT",
-  "description": "Clusterlean App SDK for JavaScript"
+  "description": "Clusterlean App SDK for JavaScript",
+  "files": ["build"]
 }
