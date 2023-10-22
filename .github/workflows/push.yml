@@ -53,12 +53,12 @@ jobs:
           npm run test
           ./clapp migrate down
           tar -czvf node_modules.tar.gz node_modules
-          tar -czvf build.tar.gz build
+          tar -czvf lib.tar.gz lib
           tar -czvf dist.tar.gz dist
       - uses: actions/upload-artifact@v3
         with:
           path: |
-            build.tar.gz
+            lib.tar.gz
             dist.tar.gz
             node_modules.tar.gz
           retention-days: 1
@@ -76,7 +76,7 @@ jobs:
       - uses: actions/download-artifact@v3
       - name: Extract build job artifcat
         run: |
-          tar -xzvf artifact/build.tar.gz
+          tar -xzvf artifact/lib.tar.gz
           tar -xzvf artifact/node_modules.tar.gz
           tar -xzvf artifact/dist.tar.gz
       - uses: docker/login-action@v2
