@@ -16,9 +16,15 @@ jobs:
         with:
           node-version: 18
           registry-url: 'https://npm.pkg.github.com'
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Clapp init
         env:
           DOCKER_NETWORK_NAME: ${{ job.container.network }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker pull mysql:8.0.33
           docker pull redis:7.0.11
