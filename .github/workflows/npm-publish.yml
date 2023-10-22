@@ -16,11 +16,21 @@ jobs:
         with:
           node-version: 18
           registry-url: 'https://npm.pkg.github.com'
+      - name: Clapp init
+        env:
+          DOCKER_NETWORK_NAME: ${{ job.container.network }}
+        run: |
+          docker pull mysql:8.0.33
+          docker pull redis:7.0.11
+          docker pull ghcr.io/clusterlean/ark:main
+          chmod +x ./clapp
+          ./clapp init
+          docker ps
       - run: npm ci
       - run: npm run fmt:check
       - run: npm run lint
-      - run: npm run test
       - run: npm run build
+      - run: npm run test
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

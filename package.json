@@ -4,6 +4,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc --rootDir src --declaration",
+    "build:watch": "npm run build -- --watch",
     "lint": "eslint '{src,test}/**/*.{ts,js,jsx,tsx}'",
     "test": "mocha --require ts-node/register",
     "test:watch": "npm run test -- --watch --watch-files src,test",
