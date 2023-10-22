@@ -12,8 +12,6 @@ export function sayGoodbye() {
   console.log("goodbye");
 }
 
-const gwHostname = "127.0.0.2";
-
 // DOCKER_NETWORK_NAME=mynet
 // DOCKER_GATEWAY_HOST=127.0.0.1
 // DB_SHARD_1_EXTERNAL_PORT= 3306
@@ -26,28 +24,62 @@ const gwHostname = "127.0.0.2";
 // HTTP_HOST=localhost
 //
 
-function resolveEndpoint() {
-  let portNum = 3306;
-  if (process.env.DB_SHARD_1_INTERNAL_PORT) {
-    portNum = parseInt(process.env.DB_SHARD_1_INTERNAL_PORT);
+function resolveEndpoint(shard: number) {
+  let portNum = 3306 - 1 + shard;
+  if (process.env[`DB_SHARD_${shard}_INTERNAL_PORT`]) {
+    portNum = parseInt(process.env[`DB_SHARD_${shard}_INTERNAL_PORT`] || "0");
   }
   return {
-    host: process.env.DB_SHARD_1_INTERNAL_HOST || gwHostname,
+    host: process.env[`DB_SHARD_${shard}_INTERNAL_HOST`] || "127.0.0.1",
     port: portNum,
   };
 }
 
-type NumberCallback = (err: unknown, n: mysql.Connection) => unknown;
-
-export function connect(): Promise<mysql.Connection> {
+function createPool(shard: number): Promise<mysql.Pool> {
   return new Promise((resolve, reject) => {
-    const connection = mysql.createConnection({
-      ...resolveEndpoint(),
-      user: "test_1",
-      password: "password",
-      database: "myproject_1",
-    });
-    connection.connect();
-    resolve(connection);
+    try {
+      const pool = mysql.createPool({
+        ...resolveEndpoint(shard),
+        user: `test_${shard}`,
+        password: "password",
+        database: `myproject_${shard}`,
+      });
+      resolve(pool);
+    } catch (e) {
+      reject(e);
+    }
   });
+}
+
+export class DB {
+  pool: Promise<mysql.Pool>;
+  constructor(shardNum = 1) {
+    this.pool = createPool(shardNum);
+  }
+
+  async query(sql: string): Promise<[unknown, mysql.FieldInfo[] | undefined]> {
+    const pool = await this.pool;
+    return new Promise((resolve, reject) => {
+      pool.query(sql, (err, results, fields) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve([results, fields]);
+      });
+    });
+  }
+
+  async close(): Promise<void> {
+    const pool = await this.pool;
+    return new Promise((resolve) => {
+      pool.end((err) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        resolve(undefined);
+      });
+    });
+  }
 }
