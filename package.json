@@ -1,6 +1,6 @@
 {
   "name": "@clusterlean/clusterlean-sdk-js",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc --rootDir src --declaration",
