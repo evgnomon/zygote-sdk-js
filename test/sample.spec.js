@@ -110,7 +110,8 @@ describe("DB.query", function () {
       ],
     },
     {
-      query: "select * from books;",
+      query:
+        "select id, title, author, publication_year, description from books;",
       results: [
         {
           id: 1,
@@ -118,8 +119,6 @@ describe("DB.query", function () {
           author: "George Orwell",
           publication_year: 1949,
           description: "Dystopian novel",
-          created_at: new Date("2023-10-22T09:27:18.000Z"),
-          updated_at: new Date("2023-10-22T09:27:18.000Z"),
         },
         {
           id: 2,
@@ -127,8 +126,6 @@ describe("DB.query", function () {
           author: "Harper Lee",
           publication_year: null,
           description: null,
-          created_at: new Date("2023-10-22T09:27:18.000Z"),
-          updated_at: new Date("2023-10-22T09:27:18.000Z"),
         },
         {
           id: 3,
@@ -136,8 +133,6 @@ describe("DB.query", function () {
           author: "F. Scott Fitzgerald",
           publication_year: 1925,
           description: null,
-          created_at: new Date("2023-10-22T09:27:18.000Z"),
-          updated_at: new Date("2023-10-22T09:27:18.000Z"),
         },
         {
           id: 4,
@@ -145,8 +140,6 @@ describe("DB.query", function () {
           author: "Herman Melville",
           publication_year: null,
           description: null,
-          created_at: new Date("2023-10-22T09:27:18.000Z"),
-          updated_at: new Date("2023-10-22T09:27:18.000Z"),
         },
       ],
       fields: [
@@ -221,36 +214,6 @@ describe("DB.query", function () {
           length: 196605,
           type: 252,
           flags: 16,
-          decimals: 0,
-          zeroFill: false,
-          protocol41: true,
-        },
-        {
-          catalog: "def",
-          db: "myproject_1",
-          table: "books",
-          orgTable: "books",
-          name: "created_at",
-          orgName: "created_at",
-          charsetNr: 63,
-          length: 19,
-          type: 7,
-          flags: 1152,
-          decimals: 0,
-          zeroFill: false,
-          protocol41: true,
-        },
-        {
-          catalog: "def",
-          db: "myproject_1",
-          table: "books",
-          orgTable: "books",
-          name: "updated_at",
-          orgName: "updated_at",
-          charsetNr: 63,
-          length: 19,
-          type: 7,
-          flags: 9344,
           decimals: 0,
           zeroFill: false,
           protocol41: true,
