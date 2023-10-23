@@ -77,10 +77,10 @@ export class DB {
 }
 
 type MEMConf = {
-  REDIS_PORT: number;
-  REDIS_SHARD_1_INTERNAL_HOST: string;
-  REDIS_SHARD_2_INTERNAL_HOST: string;
-  REDIS_SHARD_3_INTERNAL_HOST: string;
+  MEM_INTERNAL_PORT: number;
+  MEM_SHARD_1_INTERNAL_HOST: string;
+  MEM_SHARD_2_INTERNAL_HOST: string;
+  MEM_SHARD_3_INTERNAL_HOST: string;
 };
 
 export class MEM {
@@ -88,29 +88,33 @@ export class MEM {
   constructor(conf?: MEMConf) {
     if (!conf) {
       conf = {
-        REDIS_SHARD_1_INTERNAL_HOST: "clapp-mem-shard-1",
-        REDIS_SHARD_2_INTERNAL_HOST: "clapp-mem-shard-2",
-        REDIS_SHARD_3_INTERNAL_HOST: "clapp-mem-shard-3",
-        REDIS_PORT: 6373,
+        MEM_SHARD_1_INTERNAL_HOST: "clapp-mem-shard-1",
+        MEM_SHARD_2_INTERNAL_HOST: "clapp-mem-shard-2",
+        MEM_SHARD_3_INTERNAL_HOST: "clapp-mem-shard-3",
+        MEM_INTERNAL_PORT: 6373,
       };
     }
-    if (!conf.REDIS_PORT) {
-      throw new Error("REDIS_PORT is not set");
+    if (!conf.MEM_INTERNAL_PORT) {
+      throw new Error("MEM_INTERNAL_PORT is not set");
     }
-    if (!conf.REDIS_SHARD_1_INTERNAL_HOST) {
-      throw new Error("REDIS_SHARD_1_INTERNAL_HOST is not set");
+    if (!conf.MEM_SHARD_1_INTERNAL_HOST) {
+      throw new Error("MEM_SHARD_1_INTERNAL_HOST is not set");
     }
-    if (!conf.REDIS_SHARD_2_INTERNAL_HOST) {
-      throw new Error("REDIS_SHARD_2_INTERNAL_HOST is not set");
+    if (!conf.MEM_SHARD_2_INTERNAL_HOST) {
+      throw new Error("MEM_SHARD_2_INTERNAL_HOST is not set");
     }
-    if (!conf.REDIS_SHARD_3_INTERNAL_HOST) {
-      throw new Error("REDIS_SHARD_3_INTERNAL_HOST is not set");
+    if (!conf.MEM_SHARD_3_INTERNAL_HOST) {
+      throw new Error("MEM_SHARD_3_INTERNAL_HOST is not set");
     }
     this.#conf = conf;
   }
 
   async connect(): Promise<Cluster> {
-    const ports = [6373, 6374, 6375];
+    const ports = [
+      this.#conf.MEM_INTERNAL_PORT,
+      this.#conf.MEM_INTERNAL_PORT + 1,
+      this.#conf.MEM_INTERNAL_PORT + 2,
+    ];
     const dockerHost = "127.0.0.1";
     const config: RedisOptions = {};
 
@@ -129,20 +133,20 @@ export class MEM {
         }, {});
 
       config.natMap = {
-        [`${hostMap[this.#conf.REDIS_SHARD_1_INTERNAL_HOST]}:${
-          this.#conf.REDIS_PORT
+        [`${hostMap[this.#conf.MEM_SHARD_1_INTERNAL_HOST]}:${
+          this.#conf.MEM_INTERNAL_PORT
         }`]: {
           host: dockerHost,
           port: ports[0],
         },
-        [`${hostMap[this.#conf.REDIS_SHARD_2_INTERNAL_HOST]}:${
-          this.#conf.REDIS_PORT
+        [`${hostMap[this.#conf.MEM_SHARD_2_INTERNAL_HOST]}:${
+          this.#conf.MEM_INTERNAL_PORT
         }`]: {
           host: dockerHost,
           port: ports[1],
         },
-        [`${hostMap[this.#conf.REDIS_SHARD_3_INTERNAL_HOST]}:${
-          this.#conf.REDIS_PORT
+        [`${hostMap[this.#conf.MEM_SHARD_3_INTERNAL_HOST]}:${
+          this.#conf.MEM_INTERNAL_PORT
         }`]: {
           host: dockerHost,
           port: ports[2],
@@ -155,18 +159,18 @@ export class MEM {
         {
           port: !process.env.REDIS_NATMAP_DISABLED
             ? ports[0]
-            : this.#conf.REDIS_PORT,
+            : this.#conf.MEM_INTERNAL_PORT,
           host: !process.env.REDIS_NATMAP_DISABLED
             ? dockerHost
-            : this.#conf.REDIS_SHARD_1_INTERNAL_HOST,
+            : this.#conf.MEM_SHARD_1_INTERNAL_HOST,
         },
         {
           port: !process.env.REDIS_NATMAP_DISABLED
             ? ports[1]
-            : this.#conf.REDIS_PORT,
+            : this.#conf.MEM_INTERNAL_PORT,
           host: !process.env.REDIS_NATMAP_DISABLED
             ? dockerHost
-            : this.#conf.REDIS_SHARD_2_INTERNAL_HOST,
+            : this.#conf.MEM_SHARD_2_INTERNAL_HOST,
         },
       ],
       config
