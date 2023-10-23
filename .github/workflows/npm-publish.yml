@@ -38,6 +38,7 @@ jobs:
         env:
           DOCKER_NETWORK_NAME: ${{ job.container.network }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REDIS_NATMAP_DISABLED: true
         run: |
           docker pull mysql:8.0.33
           docker pull redis:7.0.11
