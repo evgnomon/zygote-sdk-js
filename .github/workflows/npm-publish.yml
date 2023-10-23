@@ -4,6 +4,13 @@ on:
   push:
     tags:
       - 'v*'
+
+env:
+  DB_SHARD_1_INTERNAL_HOST: clapp-db-shard-1
+  DB_SHARD_1_INTERNAL_PORT: 3306
+  DB_SHARD_2_INTERNAL_HOST: clapp-db-shard-2
+  DB_SHARD_2_INTERNAL_PORT: 3306
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -46,3 +53,4 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: ./clapp deinit -v
