@@ -1,32 +1,32 @@
 import { assert } from "chai";
 
-import { createIORedis } from "../src/index";
+import { MEM } from "../src/index";
 
-describe("IORedis", function () {
-  let cluster;
+describe("MEM", function () {
+  let mem;
   const value = {
     hello: "world",
   };
   before(async function () {
-    cluster = await createIORedis();
+    mem = await new MEM().connect();
   });
   after(async function () {
-    await cluster.quit();
+    await mem.quit();
   });
   describe("set and get test-key", function () {
     const testKey = "test-key";
     before(async function () {
-      await cluster.set(testKey, JSON.stringify(value));
+      await mem.set(testKey, JSON.stringify(value));
     });
     it("returns the written test key", async function () {
-      let userSession = await cluster.get(testKey);
+      const userSession = await mem.get(testKey);
       assert.deepStrictEqual(userSession, JSON.stringify(value));
     });
     it("del key", async function () {
-      await cluster.del(testKey);
+      await mem.del(testKey);
     });
     it("doesn't return the deleted test key", async function () {
-      let userSession = await cluster.get(testKey);
+      const userSession = await mem.get(testKey);
       assert.notOk(userSession);
     });
   });
