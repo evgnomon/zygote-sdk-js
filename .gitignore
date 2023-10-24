@@ -1,6 +1,5 @@
 /node_modules
 /coverage
-/lib
 
 # misc
 .DS_Store

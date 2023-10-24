@@ -1,10 +1,11 @@
 import { assert } from "chai";
 
-import { DB } from "../src/index";
+import { DB } from "../lib/index.js";
 
 describe("DB.query", function () {
+  /** @type {DB} */
   let db;
-  before(async function () {
+  before(function () {
     db = new DB(1);
   });
   after(async function () {

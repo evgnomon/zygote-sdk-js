@@ -50,15 +50,6 @@ jobs:
           npm ci
           npm run fmt:check
           npm run lint
-          npm run build
           npm run test
           ./clapp migrate down
-          tar -czvf node_modules.tar.gz node_modules
-          tar -czvf lib.tar.gz lib
-      - uses: actions/upload-artifact@v3
-        with:
-          path: |
-            lib.tar.gz
-            node_modules.tar.gz
-          retention-days: 1
       - run: ./clapp deinit -v

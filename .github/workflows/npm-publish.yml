@@ -54,7 +54,6 @@ jobs:
           npm ci
           npm run fmt:check
           npm run lint
-          npm run build
           npm run test
       - run: npm publish
         env:
