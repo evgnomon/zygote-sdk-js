@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "nodenext",
+    "checkJs": true,
+    "explainFiles": false,
+    "target": "esnext",
+    "module": "nodenext",
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "exclude": ["node_modules"]
+}

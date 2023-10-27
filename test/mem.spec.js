@@ -1,6 +1,6 @@
 import { assert } from "chai";
 
-import { MEM } from "../src/index";
+import { MEM } from "../lib/index.js";
 
 describe("MEM", function () {
   let mem;
