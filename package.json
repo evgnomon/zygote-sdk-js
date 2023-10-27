@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "type": "module",
   "scripts": {
-    "lint": "eslint '{src,test}/**/*.{js,jsx}'",
+    "lint": "eslint --max-warnings=0 '{src,test}/**/*.{js,jsx}' && tsc -p ./jsconfig.json",
     "test": "mocha 'test/**/*.spec.{js,jsx}'",
     "test:watch": "npm run test -- --watch --watch-files src,test",
     "fmt:base": "prettier '{src,test}/**/*.{js,jsx}'",
@@ -19,7 +19,7 @@
     "@types/chai": "^4.3.9",
     "@types/mocha": "^10.0.3",
     "@types/mysql": "^2.15.23",
-    "@types/node": "^20.8.7",
+    "@types/node": "^20.8.9",
     "chai": "^4.3.10",
     "dotenv": "^16.3.1",
     "eslint": "^8.52.0",
@@ -27,7 +27,8 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-mocha": "^10.2.0",
     "mocha": "^10.2.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "typescript": "^5.2.2"
   },
   "author": {
     "name": "Clusterlean AB",
