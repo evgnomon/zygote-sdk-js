@@ -1,18 +1,19 @@
+/* eslint unicorn/no-null: 0 */
 import { assert } from "chai";
 
 import { DB } from "../lib/index.js";
 
 describe("DB.query", function () {
   /** @type {DB} */
-  let db;
+  let database;
   before(function () {
-    db = new DB(1);
+    database = new DB(1);
   });
   after(async function () {
-    await db.close();
+    await database.close();
   });
 
-  const testParams = [
+  const testParameters = [
     {
       name: "select users",
       query: "select * from users where username IN ('john_doe', 'sam_smith');",
@@ -43,7 +44,7 @@ describe("DB.query", function () {
           charsetNr: 63,
           length: 11,
           type: 3,
-          flags: 16899,
+          flags: 16_899,
           decimals: 0,
           zeroFill: false,
           protocol41: true,
@@ -58,7 +59,7 @@ describe("DB.query", function () {
           charsetNr: 33,
           length: 765,
           type: 253,
-          flags: 20485,
+          flags: 20_485,
           decimals: 0,
           zeroFill: false,
           protocol41: true,
@@ -88,7 +89,7 @@ describe("DB.query", function () {
           charsetNr: 33,
           length: 765,
           type: 253,
-          flags: 20485,
+          flags: 20_485,
           decimals: 0,
           zeroFill: false,
           protocol41: true,
@@ -103,7 +104,7 @@ describe("DB.query", function () {
           charsetNr: 33,
           length: 60,
           type: 253,
-          flags: 20485,
+          flags: 20_485,
           decimals: 0,
           zeroFill: false,
           protocol41: true,
@@ -154,7 +155,7 @@ describe("DB.query", function () {
           charsetNr: 63,
           length: 11,
           type: 3,
-          flags: 16899,
+          flags: 16_899,
           decimals: 0,
           zeroFill: false,
           protocol41: true,
@@ -212,7 +213,7 @@ describe("DB.query", function () {
           name: "description",
           orgName: "description",
           charsetNr: 33,
-          length: 196605,
+          length: 196_605,
           type: 252,
           flags: 16,
           decimals: 0,
@@ -223,11 +224,11 @@ describe("DB.query", function () {
     },
   ];
 
-  for (const { query, results, fields } of testParams) {
+  for (const { query, results, fields } of testParameters) {
     describe(`with ${query}`, function () {
       let actualResults, actualFields;
       before(async function () {
-        [actualResults, actualFields] = await db.query(query);
+        [actualResults, actualFields] = await database.query(query);
       });
       it("returns desired results", function () {
         assert.deepStrictEqual(actualResults, results);
