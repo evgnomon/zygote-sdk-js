@@ -1,6 +1,6 @@
 {
   "env": {
-    "es6": true,
+    "es2024": true,
     "node": true,
     "commonjs": true,
     "mocha": true
@@ -10,20 +10,16 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["import", "mocha", "eslint-comments", "jsdoc"],
+  "plugins": ["import", "mocha", "eslint-comments", "jsdoc", "unicorn"],
   "extends": [
     "eslint:recommended",
     "plugin:eslint-comments/recommended",
     "plugin:mocha/recommended",
-    "plugin:jsdoc/recommended-error"
+    "plugin:jsdoc/recommended-error",
+    "plugin:unicorn/recommended"
   ],
   "globals": { "console": true },
   "rules": {
-    "eslint-comments/disable-enable-pair": [
-      "error",
-      { "allowWholeFile": true }
-    ],
-    "eslint-comments/no-unused-disable": "error",
     "import/order": [
       "error",
       { "newlines-between": "always", "alphabetize": { "order": "asc" } }
