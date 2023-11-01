@@ -50,6 +50,7 @@ jobs:
           npm ci
           npm run fmt:check
           npm run lint
+          npm run build
           npm run test
           ./clapp migrate down
       - run: ./clapp deinit -v

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["./types", "./node_modules/@types"],
     "baseUrl": ".",
     "moduleResolution": "nodenext",
     "checkJs": true,
@@ -7,8 +8,7 @@
     "target": "esnext",
     "module": "nodenext",
     "strictNullChecks": true,
-    "resolveJsonModule": true,
-    "noEmit": true
+    "resolveJsonModule": true
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "types"]
 }
