@@ -14,7 +14,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:eslint-comments/recommended",
-    "plugin:mocha/recommended"
+    "plugin:mocha/recommended",
+    "plugin:jsdoc/recommended-error"
   ],
   "globals": { "console": true },
   "rules": {

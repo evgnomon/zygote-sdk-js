@@ -6,7 +6,8 @@
   "types": "./types/index.d.ts",
   "scripts": {
     "build": "tsc --declaration --emitDeclarationOnly --outDir types --allowJs --declarationMap lib/index.js",
-    "lint": "eslint --max-warnings=0 '{src,test}/**/*.{js,jsx}' && tsc --noEmit",
+    "lint": "eslint --max-warnings=0 '{lib,test}/**/*.{js,jsx}' && tsc --noEmit",
+    "lint:fix": "eslint --fix --max-warnings=0 '{lib,test}/**/*.{js,jsx}' && tsc --noEmit",
     "test": "mocha 'test/**/*.spec.{js,jsx}'",
     "test:watch": "npm run test -- --watch --watch-files src,test",
     "fmt:base": "prettier '{src,test}/**/*.{js,jsx}'",
