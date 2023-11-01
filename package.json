@@ -6,7 +6,7 @@
   "types": "./types/index.d.ts",
   "scripts": {
     "build": "tsc --declaration --emitDeclarationOnly --outDir types --allowJs --declarationMap lib/index.js",
-    "lint": "eslint --max-warnings=0 '{src,test}/**/*.{js,jsx}' && tsc --noEmit -p ./tsconfig.json",
+    "lint": "eslint --max-warnings=0 '{src,test}/**/*.{js,jsx}' && tsc --noEmit",
     "test": "mocha 'test/**/*.spec.{js,jsx}'",
     "test:watch": "npm run test -- --watch --watch-files src,test",
     "fmt:base": "prettier '{src,test}/**/*.{js,jsx}'",
@@ -27,6 +27,7 @@
     "eslint": "^8.52.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsdoc": "^46.8.2",
     "eslint-plugin-mocha": "^10.2.0",
     "mocha": "^10.2.0",
     "prettier": "^2.8.8",
@@ -45,6 +46,15 @@
   },
   "license": "MIT",
   "description": "Clusterlean App SDK for JavaScript",
-  "files": ["lib", "types"],
-  "keywords": ["api", "clusterlean", "db", "memory", "sql"]
+  "files": [
+    "lib",
+    "types"
+  ],
+  "keywords": [
+    "api",
+    "clusterlean",
+    "db",
+    "memory",
+    "sql"
+  ]
 }

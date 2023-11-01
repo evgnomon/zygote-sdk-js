@@ -10,7 +10,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["import", "mocha", "eslint-comments"],
+  "plugins": ["import", "mocha", "eslint-comments", "jsdoc"],
   "extends": [
     "eslint:recommended",
     "plugin:eslint-comments/recommended",
