@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/clusterlean/ark:main
+      image: ghcr.io/evgnomon/ark:main
 
     steps:
       - uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
         run: |
           docker pull mysql:8.0.33
           docker pull redis:7.0.11
-          docker pull ghcr.io/clusterlean/ark:main
+          docker pull ghcr.io/evgnomon/ark:main
           chmod +x ./zygote
           ./zygote init
           docker ps

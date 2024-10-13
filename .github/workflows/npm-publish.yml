@@ -15,7 +15,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/clusterlean/ark:main
+      image: ghcr.io/evgnomon/ark:main
     permissions:
       contents: read
       packages: write
@@ -28,7 +28,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: robinraju/release-downloader@v1.11
         with:
-          repository: "clusterlean/zygote"
+          repository: "evgnomon/zygote"
           latest: true
           fileName: "zygote"
           token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
@@ -42,7 +42,7 @@ jobs:
         run: |
           docker pull mysql:8.0.33
           docker pull redis:7.0.11
-          docker pull ghcr.io/clusterlean/ark:main
+          docker pull ghcr.io/evgnomon/ark:main
           chmod +x ./zygote
           ./init
           docker ps
