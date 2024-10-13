@@ -6,9 +6,11 @@ import { DB } from "../lib/index.js";
 describe("DB.query", function () {
   /** @type {DB} */
   let database;
+
   before(function () {
     database = new DB(1);
   });
+
   after(async function () {
     await database.close();
   });
@@ -227,12 +229,15 @@ describe("DB.query", function () {
   for (const { query, results, fields } of testParameters) {
     describe(`with ${query}`, function () {
       let actualResults, actualFields;
+
       before(async function () {
         [actualResults, actualFields] = await database.query(query);
       });
+
       it("returns desired results", function () {
         assert.deepStrictEqual(actualResults, results);
       });
+
       it("returns desired fields", function () {
         assert.deepStrictEqual(
           JSON.parse(JSON.stringify(actualFields)),
