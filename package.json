@@ -43,7 +43,7 @@
   "homepage": "https://github.com/evgnomon/zygote-sdk-js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/evgnomon/zygote-sdk-js.git",
+    "url": "git+https://github.com/evgnomon/zygote-sdk-js.git",
     "directory": "lib"
   },
   "license": "MIT",
