@@ -1,6 +1,6 @@
 {
   "name": "@evgnomon/zygote-sdk-js",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "main": "./lib/index.js",
   "type": "module",
   "types": "./types/index.d.ts",
