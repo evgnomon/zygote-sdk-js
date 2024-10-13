@@ -1,38 +1,14 @@
-### file: evgnomon/salute/.zygote/login.toml:main
-[function.salute.configs.github]
-[function.salute.configs.userpass]
-
 [function.login]
-# branches = ["*"]
 image = "ghcr.io/evgnomon/salute"
-# prefix = "login"
-# max_instances = 1
 
 [table.user]
-# branches = ["*"]
 in = "evgnomon/zygote/store/table/main"
 id.type = "INT"
 id.auto_increment = true
 id.primary_key = true
 password = "string"
-# password.type = "VARCHAR(255)"
-# password.nullable = false
 email = "string"
-# email.type = "VARCHAR(100)"
-# email.nullable = false
-# mobile = "*string"
-inactive = "bool" # Default is false
-# weight = "float32"
-# age = "float64"
-# another = "int8"
-# another = "int16"
-# another = "int32"
-# another = "int64"
-# another = "[]byte"
-# another = "timestamp"
-# another = "struct"
-# email.type = "VARCHAR(100)"
-# email.nullable = true
+inactive = "bool"
 requires = ["timestamps"]
 # created_at.type = "TIMESTAMP"
 # created_at.default = "CURRENT_TIMESTAMP"

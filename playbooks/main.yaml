@@ -4,7 +4,13 @@
   hosts: localhost
   vars_files:
     - defaults/main.yaml
+  collections:
+    - evgnomon.catamaran
   tasks:
+    - import_role:
+        name: z_secrets
+    - import_role:
+        name: z_defaults
     - name: Install dependencies
       args:
         chdir: "{{ workspace }}"
@@ -24,3 +30,15 @@
         chdir: "{{ workspace }}"
       shell: |
         npm run build
+
+    - name: Publish
+      no_log: false
+      args:
+        chdir: "{{ workspace }}"
+      environment:
+        NPM_TOKEN: "{{ z_user_token }}"
+      when: 
+        - z_tag is defined
+        - z_tag
+      shell: |
+        npm publish
