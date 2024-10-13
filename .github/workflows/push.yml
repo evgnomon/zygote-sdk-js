@@ -5,9 +5,9 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  DB_SHARD_1_INTERNAL_HOST: clapp-db-shard-1
+  DB_SHARD_1_INTERNAL_HOST: zygote-db-shard-1
   DB_SHARD_1_INTERNAL_PORT: 3306
-  DB_SHARD_2_INTERNAL_HOST: clapp-db-shard-2
+  DB_SHARD_2_INTERNAL_HOST: zygote-db-shard-2
   DB_SHARD_2_INTERNAL_PORT: 3306
 jobs:
   build:
@@ -24,23 +24,23 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: robinraju/release-downloader@v1.8
         with:
-          repository: "clusterlean/clapp"
+          repository: "evgnomon/zygote"
           latest: true
-          fileName: "clapp"
+          fileName: "zygote"
           token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           registry-url: 'https://npm.pkg.github.com'
-      - name: Clapp init
+      - name: Zygote init
         env:
           DOCKER_NETWORK_NAME: ${{ job.container.network }}
         run: |
           docker pull mysql:8.0.33
           docker pull redis:7.0.11
           docker pull ghcr.io/clusterlean/ark:main
-          chmod +x ./clapp
-          ./clapp init
+          chmod +x ./zygote
+          ./zygote init
           docker ps
       - name: Build and Test
         env:
@@ -52,5 +52,5 @@ jobs:
           npm run lint
           npm run build
           npm run test
-          ./clapp migrate down
-      - run: ./clapp deinit -v
+          ./zygote migrate down
+      - run: ./zygote deinit -v
