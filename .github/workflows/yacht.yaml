@@ -1,0 +1,27 @@
+name: Yacht
+
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - "*"
+  delete:
+    branches:
+      - '*'
+      - '!main'
+
+jobs:
+  yacht:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: Run Playbook
+      uses: evgnomon/yacht@main
+      with:
+        vault: ${{ secrets.VAULT_FILE }}
+        vault_pass: ${{ secrets.VAULT_PASS }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}

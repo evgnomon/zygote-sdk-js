@@ -1,0 +1,26 @@
+---
+- name: NPM Build
+  gather_facts: false
+  hosts: localhost
+  vars_files:
+    - defaults/main.yaml
+  tasks:
+    - name: Install dependencies
+      args:
+        chdir: "{{ workspace }}"
+      shell: |
+        npm ci
+
+    - name: Checks
+      args:
+        chdir: "{{ workspace }}"
+      shell: |
+        npm ci
+        npm run fmt:check
+        npm run lint
+
+    - name: Build
+      args:
+        chdir: "{{ workspace }}"
+      shell: |
+        npm run build
