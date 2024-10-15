@@ -1,0 +1,51 @@
+---
+- name: NPM Build
+  gather_facts: false
+  hosts: localhost
+  vars_files:
+    - defaults/main.yaml
+  collections:
+    - evgnomon.catamaran
+  tasks:
+    - import_role:
+        name: z_secrets
+      tags: always
+    - import_role:
+        name: z_defaults
+      tags: always
+    - name: Install dependencies
+      args:
+        chdir: "{{ workspace }}"
+      shell: |
+        npm ci
+
+    - name: Checks
+      args:
+        chdir: "{{ workspace }}"
+      shell: |
+        npm ci
+        npm run fmt:check
+        npm run lint
+
+    - name: Build
+      args:
+        chdir: "{{ workspace }}"
+      shell: |
+        npm run build
+        npm link
+      tags:
+        - build
+        - z
+
+    - name: Publish
+      no_log: false
+      args:
+        chdir: "{{ workspace }}"
+      environment:
+        NPM_TOKEN: "{{ secrets.npm_token }}"
+      when: 
+        - z_tag
+      tags:
+        - publish
+      shell: |
+        npm publish --access public

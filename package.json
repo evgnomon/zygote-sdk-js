@@ -1,6 +1,6 @@
 {
-  "name": "@clusterlean/clusterlean-sdk-js",
-  "version": "0.3.6",
+  "name": "@evgnomon/zygote-sdk-js",
+  "version": "0.3.7",
   "main": "./lib/index.js",
   "type": "module",
   "types": "./types/index.d.ts",
@@ -15,48 +15,51 @@
     "fmt:check": "npm run fmt:base -- --check"
   },
   "dependencies": {
-    "ioredis": "^5.3.2",
+    "ioredis": "^5.4.1",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.9",
-    "@types/mocha": "^10.0.3",
-    "@types/mysql": "^2.15.23",
-    "@types/node": "^20.8.9",
-    "chai": "^4.3.10",
-    "dotenv": "^16.3.1",
-    "eslint": "^8.52.0",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.9",
+    "@types/mysql": "^2.15.26",
+    "@types/node": "^20.16.11",
+    "chai": "^4.5.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsdoc": "^46.8.2",
-    "eslint-plugin-mocha": "^10.2.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsdoc": "^46.10.1",
+    "eslint-plugin-mocha": "^10.5.0",
     "eslint-plugin-unicorn": "^49.0.0",
-    "mocha": "^10.2.0",
+    "mocha": "^10.7.3",
     "prettier": "^2.8.8",
-    "typescript": "^5.2.2"
+    "typescript": "^5.6.3"
   },
-  "author": {
-    "name": "Clusterlean AB",
-    "email": "",
-    "url": "https://clusterlean.com/"
-  },
-  "homepage": "https://github.com/clusterlean/clusterlean-sdk-js",
+  "author": "evgnomon (https://evgnomon.org/)",
+  "homepage": "https://github.com/evgnomon/zygote-sdk-js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/clusterlean/clusterlean-sdk-js.git",
+    "url": "git+https://github.com/evgnomon/zygote-sdk-js.git",
     "directory": "lib"
   },
   "license": "MIT",
-  "description": "Clusterlean App SDK for JavaScript",
+  "description": "Zygote App SDK for JavaScript",
   "files": [
     "lib",
     "types"
   ],
   "keywords": [
     "api",
-    "clusterlean",
+    "zygote",
     "db",
     "memory",
     "sql"
-  ]
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "bugs": {
+    "url": "https://github.com/evgnomon/zygote-sdk-js/issues"
+  }
 }
