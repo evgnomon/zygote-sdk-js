@@ -32,8 +32,10 @@
         chdir: "{{ workspace }}"
       shell: |
         npm run build
+        npm link
       tags:
         - build
+        - z
 
     - name: Publish
       no_log: false
