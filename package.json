@@ -35,11 +35,7 @@
     "prettier": "^2.8.8",
     "typescript": "^5.6.3"
   },
-  "author": {
-    "name": "evgnomon",
-    "email": "",
-    "url": "https://evgnomon.org/"
-  },
+  "author": "evgnomon (https://evgnomon.org/)",
   "homepage": "https://github.com/evgnomon/zygote-sdk-js",
   "repository": {
     "type": "git",
@@ -58,5 +54,12 @@
     "db",
     "memory",
     "sql"
-  ]
+  ],
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "bugs": {
+    "url": "https://github.com/evgnomon/zygote-sdk-js/issues"
+  }
 }

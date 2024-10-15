@@ -9,8 +9,10 @@
   tasks:
     - import_role:
         name: z_secrets
+      tags: always
     - import_role:
         name: z_defaults
+      tags: always
     - name: Install dependencies
       args:
         chdir: "{{ workspace }}"
@@ -30,15 +32,18 @@
         chdir: "{{ workspace }}"
       shell: |
         npm run build
+      tags:
+        - build
 
     - name: Publish
       no_log: false
       args:
         chdir: "{{ workspace }}"
       environment:
-        NPM_TOKEN: "{{ z_user_token }}"
+        NPM_TOKEN: "{{ secrets.npm_token }}"
       when: 
-        - z_tag is defined
         - z_tag
+      tags:
+        - publish
       shell: |
-        npm publish
+        npm publish --access public
